@@ -9,10 +9,6 @@ Creators: Angelina Zhang and Ziyu Huang
 
 We choose the dataset documenting professional League of Legends games throughout 2023; each game, uniquely identified by a distinct gameid shown in the first column, is represented with ten rows delineating individual player data for competing teams and an additional two rows offering comprehensive team statistics. 
 The dataset boasts 129264 rows and 123 columns with detailed information about each game. 
-Following last project, this time, we focus on building a model that helps predicting the result of a game using not only `side` column.
-
-We choose the dataset documenting professional League of Legends games throughout 2023; each game, uniquely identified by a distinct gameid shown in the first column, is represented with ten rows delineating individual player data for competing teams and an additional two rows offering comprehensive team statistics. 
-The dataset boasts 129264 rows and 123 columns with detailed information about each game. 
 Following the last project, this time, we focus on building a model that helps predict a game's result using not only the `side` column.
 
 
@@ -27,3 +23,10 @@ and 'natural_resource,'(difference in naturals)
 which can be obtained in the process of a game.
 
 By employing these evaluation metrics—accuracy, precision, and recall—we aim to comprehensively assess the effectiveness of our Random Forest model in predicting League of Legends game outcomes.
+
+
+## Baseline Model
+
+## Final Model
+
+## Fairness Analysis
