@@ -58,6 +58,7 @@ To further understand the relationships between features, we conducted explorato
 <iframe src="assets/scatterplt_correlation_columns.html" width=800 height=600 frameBorder=0></iframe>
 
 #### Observations:
+
 1. Linear Correlations: There appears to be linear correlation between 'golddiffat10', 'golddiffat15', 'xpdiffat10', 'xpdiffat15', and 'turretplates_diff'. To address potential multicollinearity, we plan to perform log transformation and consider dropping certain columns in the next steps.
 2. Distinguishable Cutoff: All variables seem to have a distinguishable cutoff. If a column (a) has a strong correlation (𝑟²=0.4) with all the other columns, column (a) might be represented as a linear combination of the rest of the columns. Therefore, we dropped such columns to reduce variance.
    
@@ -77,12 +78,14 @@ Using the 0.4 cutoff of r_squared, we dropped `golddiffat10`, `golddiffat15`, `x
 
 ### Baseline Model Description
 In our baseline model, we employed a logistic regression model using a preprocessor with One-Hot Encoding for the 'side' variable. The features in the model include both quantitative and nominal variables:
-Quantitative Features:
 
+
+Quantitative Features:
 `dpm`
 `xpdiffat15`
 `turretplates_diff`
 `natural_resource`
+
 
 Nominal Features:
 `side` (One-Hot Encoded)
