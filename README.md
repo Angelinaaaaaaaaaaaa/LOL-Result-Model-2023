@@ -123,6 +123,3 @@ The model's capability to correctly classify outcomes, as reflected in the confu
 ## Fairness Analysis
 
 
-## Final Model
-
-## Fairness Analysis
