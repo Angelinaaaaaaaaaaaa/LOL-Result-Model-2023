@@ -12,8 +12,11 @@ The dataset boasts 129264 rows and 123 columns with detailed information about e
 Following the last project, this time, we focus on building a model that helps predict a game's result using not only the `side` column.
 
 
+## Framing the Problem:
 Prediction Problem and Type:
-The core of our analysis revolves around a prediction problem classified as a binary classification task. Specifically, we seek to predict whether a given game will result in a win or loss for a particular team with a random forest classifier. The response variable, or the variable we aim to predict, is the game's outcome `result`. And the information we used to provide valuable insight into the final result- victory or defeat are  
+The core of our analysis revolves around a prediction problem classified as a binary classification task. Specifically, 
+### we seek to predict whether a given game will result in a win or loss for a particular team with a random forest classifier. 
+The response variable, or the variable we aim to predict, is the game's outcome `result`. In this context, we leverage data analytics to predict the outcome of a League of Legends (LoL) match, unraveling the intricate factors that contribute to success on the virtual battlefield. Our prediction model delves into features derived exclusively from in-game data. The key features under scrutiny encompass neutral resources (dragons, elders, heralds, barons) and team differentials (vision score gap, damage per minute, gold gap). And the information we used to provide valuable insight into the final result- victory or defeat are  
 
 - `doublekills`
 - `triplekills`
@@ -34,6 +37,7 @@ The core of our analysis revolves around a prediction problem classified as a bi
 
 ,which can all be obtained in the process of a game.
 
+
 This is the first five lines of our initial dataframe:
 
 | side   |   doublekills |   triplekills |   quadrakills |   pentakills |   firstblood |   firstdragon |   elders |   firstherald |   firstbaron |   firsttower |   firstmidtower |   firsttothreetowers |     dpm |   golddiffat10 |   golddiffat15 |   xpdiffat10 |   xpdiffat15 |   result |   turretplates_diff |   natural_resource |
@@ -45,6 +49,7 @@ This is the first five lines of our initial dataframe:
 | Blue   |             2 |             2 |             0 |            0 |            0 |             0 |        0 |             0 |            0 |            0 |               1 |                    0 | 1968.55 |          -1001 |          -1901 |        -1748 |         -763 |        1 |                  -3 |                  1 |
 
 By employing these evaluation metrics—accuracy, precision, and recall—using confustion matrix we aim to comprehensively assess the effectiveness of our Random Forest model in predicting League of Legends game outcomes.
+In the pursuit of accuracy, we opt for the Accuracy metric as the most suitable measure for our balanced dataset. With an equal distribution of wins and losses, and an equitable treatment of False Positives (FP) and False Negatives (FN), Accuracy emerges as the preferred metric over F-1 score, precision, and recall.
 
 
 ## Baseline Model
