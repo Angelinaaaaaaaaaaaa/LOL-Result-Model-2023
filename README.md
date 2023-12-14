@@ -90,12 +90,6 @@ As depicted in the DataFrame above, our initial focus was on columns with an r-s
 
 <iframe src="assets/xpdiffat10_residual.html" width=800 height=600 frameBorder=0></iframe>
 
-<iframe src="assets/xpdiffat15_residual.html" width=800 height=600 frameBorder=0></iframe>
-
-<iframe src="assets/dpm_residual.html" width=800 height=600 frameBorder=0></iframe>
-
-<iframe src="assets/turretplates_diff_residual.html" width=800 height=600 frameBorder=0></iframe>
-
 <iframe src="assets/natural_resource_residual.html" width=800 height=600 frameBorder=0></iframe>
 
 
