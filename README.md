@@ -16,7 +16,7 @@ Following the last project, this time, we focus on building a model that helps p
 Prediction Problem and Type:
 The core of our analysis revolves around a prediction problem classified as a binary classification task. Specifically, 
 ### we seek to predict whether a given game will result in a win or loss for a particular team with a random forest classifier. 
-The response variable, or the variable we aim to predict, is the game's outcome `result`. In this context, we leverage data analytics to predict the outcome of a League of Legends (LoL) match, unraveling the intricate factors that contribute to success on the virtual battlefield. Our prediction model delves into features derived exclusively from in-game data. The key features under scrutiny encompass neutral resources (dragons, elders, heralds, barons) and team differentials (vision score gap, damage per minute, gold gap). And the information we used to provide valuable insight into the final result- victory or defeat are  
+The response variable, or the variable we aim to predict, is the game's outcome `result`. In this context, we leverage data analytics to predict the outcome of a League of Legends (LoL) match, unraveling the intricate factors that contribute to success on the virtual battlefield. Our prediction model delves into features derived exclusively from in-game data. The key features under scrutiny encompass neutral resources (dragons, elders, heralds, barons) and team differentials (experience team differance at 10 and 15 minutes, damage per minute, gold difference at 10 and 15). And the information we used to provide valuable insight into the final result- victory or defeat are  
 
 - `doublekills`
 - `triplekills`
@@ -31,9 +31,12 @@ The response variable, or the variable we aim to predict, is the game's outcome 
 - `firstmidtower`
 - `firsttothreetowers`
 - `dpm`
+- `xpdiffat10`
 - `xpdiffat15`
+- `golddiff10`
+- `golddiff15`
 - `turretplates_diff`
-- `natural_resource` (same calculation process as last project and we compute difference in natural resources to address the “time of prediction”  problem)
+- `natural_resource` (same calculation process as Side-Analysis-of-League-Of-Legends-2023 and we compute difference in natural resources to address the “time of prediction”  problem)
 
 ,which can all be obtained in the process of a game.
 
@@ -64,21 +67,23 @@ To further understand the relationships between features, we conducted explorato
 
 #### Observations:
 
-1. Linear Correlations: There appears to be linear correlation between 'golddiffat10', 'golddiffat15', 'xpdiffat10', 'xpdiffat15', and 'turretplates_diff'. To address potential multicollinearity, we plan to perform log transformation and consider dropping certain columns in the next steps.
-2. Distinguishable Cutoff: All variables seem to have a distinguishable cutoff. If a column (a) has a strong correlation (𝑟²=0.4) with all the other columns, column (a) might be represented as a linear combination of the rest of the columns. Therefore, we dropped such columns to reduce variance.
+1. Linear Correlations: There appears to be linear correlation between 'golddiffat10', 'golddiffat15', 'xpdiffat10', 'xpdiffat15', and 'turretplates_diff'. To address potential multicollinearity, we plan to perform consider dropping certain columns in the next steps.
+2. Distinguishable Cutoff: If a column (a) has a strong correlation (𝑟²=0.4) with all the other columns, column (a) might be represented as a linear combination of the rest of the columns. Therefore, we dropped such columns to reduce variance ($variance\proptod/n$, where d is number of columns and n is number of data points, or rows)
    
    This is the head of our result dataframe showing columns correlation with each other:
 
-
 | target            |   r_squared | features                                                                                     |     rmse |
 |:------------------|------------:|:---------------------------------------------------------------------------------------------|---------:|
-| golddiffat10      |    0.615094 | ['golddiffat15', 'xpdiffat10', 'xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource'] | 0.645081 |
-| golddiffat15      |    0.679717 | ['xpdiffat10', 'xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource']                 | 0.598195 |
-| xpdiffat10        |    0.411069 | ['xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource']                               | 0.829502 |
-| xpdiffat15        |    0.309912 | ['turretplates_diff', 'dpm', 'natural_resource']                                             | 0.93868  |
-| turretplates_diff |    0.33633  | ['xpdiffat15', 'dpm', 'natural_resource']                                                    | 0.92878  |
+| golddiffat10      |    0.615888 | ['golddiffat15', 'xpdiffat10', 'xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource'] | 0.657047 |
+| golddiffat15      |    0.67494  | ['xpdiffat10', 'xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource']                 | 0.602823 |
+| xpdiffat10        |    0.414985 | ['xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource']                               | 0.841752 |
+| xpdiffat15        |    0.308287 | ['turretplates_diff', 'dpm', 'natural_resource']                                             | 0.923411 |
+| turretplates_diff |    0.332854 | ['xpdiffat15', 'dpm', 'natural_resource']                                                    | 0.925314 |
+
+As the DataFrame above, 
 
 Using the 0.4 cutoff of r_squared, we dropped `golddiffat10`, `golddiffat15`, `xpdiffat10`.
+
 
 
 ### Baseline Model Description
