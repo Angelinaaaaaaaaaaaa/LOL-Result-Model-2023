@@ -52,42 +52,63 @@ This is the first five lines of our initial dataframe:
 | Blue   |             2 |             2 |             0 |            0 |            0 |             0 |        0 |             0 |            0 |            0 |               1 |                    0 | 1968.55 |          -1001 |          -1901 |        -1748 |         -763 |        1 |                  -3 |                  1 |
 
 By employing these evaluation metrics—accuracy, precision, and recall—using confustion matrix we aim to comprehensively assess the effectiveness of our Random Forest model in predicting League of Legends game outcomes.
-In the pursuit of accuracy, we opt for the Accuracy metric as the most suitable measure for our balanced dataset. With an equal distribution of wins and losses, and an equitable treatment of False Positives (FP) and False Negatives (FN), Accuracy emerges as the preferred metric over F-1 score, precision, and recall.
+In the pursuit of accuracy, we opt for the Accuracy metric as the most suitable measure for our balanced dataset. With an equal distribution of wins and losses, and an equitable treatment of False Positives (FP) and False Negatives (FN), accuracy emerges as the preferred metric over F-1 score, precision, and recall.
 
 
 ## Baseline Model
 
 ### Exploratory Data Analysis (EDA)
 
-In our exploratory data analysis, we noticed missing data correlated with the 'league' variable. To address this, we utilized probabilistic imputation, leveraging data from other leagues to fill in missing values, ensuring a more comprehensive dataset.
+In our exploratory data analysis, we noticed missing data correlated with the `league` variable. To address this, we utilized probabilistic imputation, leveraging data from other leagues to fill in missing values, ensuring a more comprehensive dataset.
 
 To further understand the relationships between features, we conducted exploratory data analysis by drawing a scatter plot matrix. The color-coding is based on the game result ('Win' or 'Lose').
 
-<iframe src="assets/scatterplt_correlation_columns.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/scatterplt_correlation_columns.html" width=1000 height=800 frameBorder=0></iframe>
 
 #### Observations:
 
-1. Linear Correlations: There appears to be linear correlation between 'golddiffat10', 'golddiffat15', 'xpdiffat10', 'xpdiffat15', and 'turretplates_diff'. To address potential multicollinearity, we plan to perform consider dropping certain columns in the next steps.
-2. Distinguishable Cutoff: If a column (a) has a strong correlation (𝑟²=0.4) with all the other columns, column (a) might be represented as a linear combination of the rest of the columns. Therefore, we dropped such columns to reduce variance ($variance\proptod/n$, where d is number of columns and n is number of data points, or rows)
+1. Linear Correlations: There appears to be linear correlation between `golddiffat10`, `golddiffat15`, `xpdiffat10`, `xpdiffat15`, and `turretplates_diff`. To address potential multicollinearity, we plan to perform consider dropping certain columns in the next steps.
+2. Distinguishable Cutoff: If a column (a) has a strong correlation (𝑟²=0.4) with all the other columns, column (a) might be represented as a linear combination of the rest of the columns. Therefore, we dropped such columns to reduce variance ($variance\propto d/n$, where d is number of columns and n is number of data points, or rows)
    
    This is the head of our result dataframe showing columns correlation with each other:
 
 | target            |   r_squared | features                                                                                     |     rmse |
 |:------------------|------------:|:---------------------------------------------------------------------------------------------|---------:|
-| golddiffat10      |    0.615888 | ['golddiffat15', 'xpdiffat10', 'xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource'] | 0.657047 |
-| golddiffat15      |    0.67494  | ['xpdiffat10', 'xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource']                 | 0.602823 |
-| xpdiffat10        |    0.414985 | ['xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource']                               | 0.841752 |
-| xpdiffat15        |    0.308287 | ['turretplates_diff', 'dpm', 'natural_resource']                                             | 0.923411 |
-| turretplates_diff |    0.332854 | ['xpdiffat15', 'dpm', 'natural_resource']                                                    | 0.925314 |
+| golddiffat10      |    0.617526 | ['golddiffat15', 'xpdiffat10', 'xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource'] | 0.629095 |
+| golddiffat15      |    0.680532 | ['xpdiffat10', 'xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource']                 | 0.600347 |
+| xpdiffat10        |    0.414847 | ['xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource']                               | 0.840565 |
+| xpdiffat15        |    0.310988 | ['turretplates_diff', 'dpm', 'natural_resource']                                             | 0.943209 |
+| turretplates_diff |    0.332043 | ['xpdiffat15', 'dpm', 'natural_resource']                                                    | 0.92644  |
+| dpm               |    0.122643 | ['xpdiffat15', 'turretplates_diff', 'natural_resource']                                      | 1.15932  |
+| natural_resource  |    0.324374 | ['xpdiffat15', 'turretplates_diff', 'dpm']                                                   | 0.932176 |
+ 
+As depicted in the DataFrame above, our initial focus was on columns with an r-squared value greater than 0.4. Despite the promising nature of these features, the presence of a relatively high root mean squared error (rmse) prompted us to delve deeper into the analysis. To gain a clearer understanding of the predictive performance and potential issues, we proceeded to visualize the residuals, which allows us to scrutinize the disparities between the predicted values and the actual observations. This examination becomes particularly crucial when facing higher rmse values, as it helps identify patterns or trends that may not be evident through standard metrics alone.
 
-As the DataFrame above, 
+<iframe src="assets/golddiffat10_residual.html" width=800 height=600 frameBorder=0></iframe>
 
-Using the 0.4 cutoff of r_squared, we dropped `golddiffat10`, `golddiffat15`, `xpdiffat10`.
+<iframe src="assets/golddiffat15_residual.html" width=800 height=600 frameBorder=0></iframe>
+
+<iframe src="assets/xpdiffat10_residual.html" width=800 height=600 frameBorder=0></iframe>
+
+<iframe src="assets/xpdiffat15_residual.html" width=800 height=600 frameBorder=0></iframe>
+
+<iframe src="assets/dpm_residual.html" width=800 height=600 frameBorder=0></iframe>
+
+<iframe src="assets/turretplates_diff_residual.html" width=800 height=600 frameBorder=0></iframe>
+
+<iframe src="assets/natural_resource_residual.html" width=800 height=600 frameBorder=0></iframe>
+
+
+By plotting the residuals, we aimed to uncover any systematic deviations or patterns in our predictions. This step provides valuable insights into the limitations of our model and guides potential refinements to enhance its accuracy and reliability.
+
+
+
+With the promising result of residual plot, we dropped `golddiffat10`, `golddiffat15`, `xpdiffat10`.
 
 
 
 ### Baseline Model Description
-In our baseline model, we employed a logistic regression model using a preprocessor with One-Hot Encoding for the 'side' variable. The features in the model include both quantitative and nominal variables:
+In our baseline model, we employed a logistic regression model using a preprocessor with One-Hot Encoding for the `side` variable. The features in the model include both quantitative and nominal variables:
 
 
 Quantitative Features:
@@ -112,7 +133,10 @@ Nominal Features:
 `firstmidtower`
 `firsttothreetowers`
 
-The logistic regression model was tuned using a grid search with the parameter max_iter, and the best-performing model was obtained with max_iter=400.
+#### Feature Transformation and Hyperparameter Tuning
+
+In this analysis, we employed a combination of feature transformation and hyperparameter tuning to enhance the performance of a logistic regression model. The feature transformation was executed using a preprocessor, specifically a ColumnTransformer, which applied a One-Hot Encoding transformation to the 'side' feature while preserving other features through the 'passthrough' option. This transformation is encapsulated within a Pipeline, along with the logistic regression model. To optimize the logistic regression model's performance, a grid search was conducted over the hyperparameter space, focusing on the max_iter parameter. The grid search, performed with cross-validation, identified the best-performing model with a max_iter value of 400. This parameter choice is supported by a graph depicting the model's performance across different max_iter values. The resulting tuned logistic regression model is expected to exhibit improved predictive capabilities, making it well-suited for the task at hand, which is shown below.
+<iframe src="assets/bl_hyperpara_accuracy.html" width=800 height=600 frameBorder=0></iframe>
 
 ### Performance Evaluation
 The model achieved a high accuracy of approximately 85.97%. The confusion matrix shows good performance in distinguishing between true positives (1819) and true negatives (1840), with fewer false positives (357) and false negatives (293).
@@ -132,6 +156,12 @@ The model's capability to correctly classify outcomes, as reflected in the confu
 
 
 ## Final Model
+
+#### Feature Transformation
+
+
+ 
+
 
 ## Fairness Analysis
 
