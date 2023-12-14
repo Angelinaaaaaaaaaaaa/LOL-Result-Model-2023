@@ -68,7 +68,7 @@ To further understand the relationships between features, we conducted explorato
 #### Observations:
 
 1. Linear Correlations: There appears to be linear correlation between `golddiffat10`, `golddiffat15`, `xpdiffat10`, `xpdiffat15`, and `turretplates_diff`. To address potential multicollinearity, we plan to perform consider dropping certain columns in the next steps.
-2. Distinguishable Cutoff: If a column (a) has a strong correlation (𝑟²=0.4) with all the other columns, column (a) might be represented as a linear combination of the rest of the columns. Therefore, we dropped such columns to reduce variance ($variance\proptod/n$, where d is number of columns and n is number of data points, or rows)
+2. Distinguishable Cutoff: If a column (a) has a strong correlation (𝑟²=0.4) with all the other columns, column (a) might be represented as a linear combination of the rest of the columns. Therefore, we dropped such columns to reduce variance ($variance\propto d/n$, where d is number of columns and n is number of data points, or rows)
    
    This is the head of our result dataframe showing columns correlation with each other:
 
@@ -79,10 +79,14 @@ To further understand the relationships between features, we conducted explorato
 | xpdiffat10        |    0.414985 | ['xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource']                               | 0.841752 |
 | xpdiffat15        |    0.308287 | ['turretplates_diff', 'dpm', 'natural_resource']                                             | 0.923411 |
 | turretplates_diff |    0.332854 | ['xpdiffat15', 'dpm', 'natural_resource']                                                    | 0.925314 |
+ 
+As depicted in the DataFrame above, our initial focus was on columns with an r-squared value greater than 0.4. Despite the promising nature of these features, the presence of a relatively high root mean squared error (rmse) prompted us to delve deeper into the analysis. To gain a clearer understanding of the predictive performance and potential issues, we proceeded to visualize the residuals, which allows us to scrutinize the disparities between the predicted values and the actual observations. This examination becomes particularly crucial when facing higher rmse values, as it helps identify patterns or trends that may not be evident through standard metrics alone.
 
-As the DataFrame above, 
+By plotting the residuals, we aimed to uncover any systematic deviations or patterns in our predictions. This step provides valuable insights into the limitations of our model and guides potential refinements to enhance its accuracy and reliability.
 
-Using the 0.4 cutoff of r_squared, we dropped `golddiffat10`, `golddiffat15`, `xpdiffat10`.
+
+
+With the promising result of residual plot, we dropped `golddiffat10`, `golddiffat15`, `xpdiffat10`.
 
 
 
