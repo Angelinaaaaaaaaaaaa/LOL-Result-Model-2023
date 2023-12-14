@@ -136,8 +136,10 @@ The model's capability to correctly classify outcomes, as reflected in the confu
 
 ## Final Model
 
-#### Feature Transformation
+### Feature Transformation
+
 #### New Features
+
 We enhanced our baseline model by incorporating additional features, including `doublekills`, `triplekills`, `quadrakills`, `pentakills`, `firstblood`, `firstdragon`, `elders`, `firstherald`, `firstbaron`, `firsttower`, `firstmidtower`, `firsttothreetowers`, `dpm`, `turretplates_diff`, and `natural_resource`. This augmentation aims to refine the final model.
 
 The selection of features such as `turretplates_diff`, `firstblood`, `firstdragon`, and `firstherald` is based on their ability to reflect a team's early-game performance, contributing to the acquisition of initial advantages. Additionally, features related to `firstbaron`, `elder`, `doublekills`, `triplekills`, `quadrakills`, and `pentakills` were incorporated, as they consistently mark pivotal moments in the game, signifying significant shifts in momentum.
@@ -147,9 +149,9 @@ Furthermore, the inclusion of `firsttower`, `firstmidtower`, and `firsttothreeto
 
 #### Hyperparameters:
 
-To address our binary classification question(predict either win or lose), we opted to employ the RandomForest Classification (RFC) model on the dataset. Our primary focus during hyperparameter tuning revolves around three key parameters: the number of decision trees in RFC, the maximum depth of each decision tree, and the metric used for assessing disorder in each node — either entropy, which is measures of information gain, or Gini, which is the measure of impurity. Applying Cross validation for tuning the hyperparameters, we end up with 1250 decision trees, max_depth with 14, and the criterion is ‘gini’.
+To address our binary classification question(predict either win or lose), we opted to employ the RandomForest Classification (RFC) model on the dataset. Our primary focus during hyperparameter tuning revolves around three key parameters: the number of decision trees in RFC, the maximum depth of each decision tree, and the metric used for assessing disorder in each node — either entropy, which is measures of information gain, or Gini, which is the measure of impurity. Applying Cross validation for tuning the hyperparameters, we end up with 1250 decision trees, max_depth with 14, and the criterion is `gini`.
 
-
+### Model Assessment
 Here is a visualization of the confusion matrix after fitting the model:
 
  ![image](https://github.com/Angelinaaaaaaaaaaaa/LOL-Result-Model-2023/assets/115201846/33c0a9f8-bb60-49a5-95b9-5fbd1eec96f5)
