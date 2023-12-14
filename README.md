@@ -156,7 +156,7 @@ Here is a visualization of the confusion matrix after fitting the model:
 
  ![image](https://github.com/Angelinaaaaaaaaaaaa/LOL-Result-Model-2023/assets/115201846/33c0a9f8-bb60-49a5-95b9-5fbd1eec96f5)
 
-Initially, upon examining the accuracy metrics, it's evident that the RandomForest Classification (RFC) model performs notably well, achieving an accuracy of approximately 86%. This represents a substantial improvement of 10% compared to the accuracy observed with the Logistic Regression model. Moreover, when evaluating precision and recall, the RFC model outperforms the baseline model. In summary, considering accuracy, precision, and recall collectively, it is apparent that RFC excels in effectively classifying the 'result' variable.
+Initially, upon examining the accuracy metrics, it's evident that the RandomForest Classification (RFC) model performs notably well, achieving an accuracy of approximately 86%. This represents a substantial improvement of 10% compared to the accuracy observed with the Logistic Regression model. Moreover, when evaluating precision and recall, the RFC model outperforms the baseline model. In summary, considering accuracy, precision, and recall collectively, it is apparent that RFC excels in effectively classifying the `result` variable.
 
 
 
