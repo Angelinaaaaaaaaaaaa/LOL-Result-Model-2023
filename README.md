@@ -63,7 +63,7 @@ In our exploratory data analysis, we noticed missing data correlated with the `l
 
 To further understand the relationships between features, we conducted exploratory data analysis by drawing a scatter plot matrix. The color-coding is based on the game result ('Win' or 'Lose').
 
-<iframe src="assets/scatterplt_correlation_columns.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/scatterplt_correlation_columns.html" width=1000 height=800 frameBorder=0></iframe>
 
 #### Observations:
 
