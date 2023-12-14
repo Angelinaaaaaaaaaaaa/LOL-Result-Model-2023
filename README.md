@@ -74,13 +74,30 @@ To further understand the relationships between features, we conducted explorato
 
 | target            |   r_squared | features                                                                                     |     rmse |
 |:------------------|------------:|:---------------------------------------------------------------------------------------------|---------:|
-| golddiffat10      |    0.615888 | ['golddiffat15', 'xpdiffat10', 'xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource'] | 0.657047 |
-| golddiffat15      |    0.67494  | ['xpdiffat10', 'xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource']                 | 0.602823 |
-| xpdiffat10        |    0.414985 | ['xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource']                               | 0.841752 |
-| xpdiffat15        |    0.308287 | ['turretplates_diff', 'dpm', 'natural_resource']                                             | 0.923411 |
-| turretplates_diff |    0.332854 | ['xpdiffat15', 'dpm', 'natural_resource']                                                    | 0.925314 |
+| golddiffat10      |    0.617526 | ['golddiffat15', 'xpdiffat10', 'xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource'] | 0.629095 |
+| golddiffat15      |    0.680532 | ['xpdiffat10', 'xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource']                 | 0.600347 |
+| xpdiffat10        |    0.414847 | ['xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource']                               | 0.840565 |
+| xpdiffat15        |    0.310988 | ['turretplates_diff', 'dpm', 'natural_resource']                                             | 0.943209 |
+| turretplates_diff |    0.332043 | ['xpdiffat15', 'dpm', 'natural_resource']                                                    | 0.92644  |
+| dpm               |    0.122643 | ['xpdiffat15', 'turretplates_diff', 'natural_resource']                                      | 1.15932  |
+| natural_resource  |    0.324374 | ['xpdiffat15', 'turretplates_diff', 'dpm']                                                   | 0.932176 |
  
 As depicted in the DataFrame above, our initial focus was on columns with an r-squared value greater than 0.4. Despite the promising nature of these features, the presence of a relatively high root mean squared error (rmse) prompted us to delve deeper into the analysis. To gain a clearer understanding of the predictive performance and potential issues, we proceeded to visualize the residuals, which allows us to scrutinize the disparities between the predicted values and the actual observations. This examination becomes particularly crucial when facing higher rmse values, as it helps identify patterns or trends that may not be evident through standard metrics alone.
+
+<iframe src="assets/golddiffat10_residual.html" width=800 height=600 frameBorder=0></iframe>
+
+<iframe src="assets/golddiffat15_residual.html" width=800 height=600 frameBorder=0></iframe>
+
+<iframe src="assets/xpdiffat10_residual.html" width=800 height=600 frameBorder=0></iframe>
+
+<iframe src="assets/xpdiffat15_residual.html" width=800 height=600 frameBorder=0></iframe>
+
+<iframe src="assets/dpm_residual.html" width=800 height=600 frameBorder=0></iframe>
+
+<iframe src="assets/turretplates_diff_residual.html" width=800 height=600 frameBorder=0></iframe>
+
+<iframe src="assets/natural_resource_residual.html" width=800 height=600 frameBorder=0></iframe>
+
 
 By plotting the residuals, we aimed to uncover any systematic deviations or patterns in our predictions. This step provides valuable insights into the limitations of our model and guides potential refinements to enhance its accuracy and reliability.
 
