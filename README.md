@@ -185,12 +185,12 @@ A significance level of 0.01 was chosen to determine the threshold for statistic
 
 ### Permutation Test Results:
 
-Upon conducting the permutation test, we obtained a p-value of 0.2644. This p-value represents the probability of observing a difference in accuracy as extreme as the one observed, assuming the null hypothesis is true.
+Upon conducting the permutation test, we obtained a p-value of 0.967. This p-value represents the probability of observing a difference in accuracy as extreme as the one observed, assuming the null hypothesis is true.
 <iframe src="assets/Side_Accuracy_Difference.html" width=800 height=600 frameBorder=0></iframe>
 
 ### Conclusion:
 
-Given our chosen significance level of 0.01, the obtained p-value of 0.2644 exceeds the threshold. Therefore, we fail to reject the null hypothesis. This suggests that any observed variations in accuracy between the blue side and the red side may be attributed to random chance.
+Given our chosen significance level of 0.01, the obtained p-value of 0.967 exceeds the threshold. Therefore, we fail to reject the null hypothesis. This suggests that any observed variations in accuracy between the blue side and the red side may be attributed to random chance.
 
 *Note: In the context of statistical tests, we do not make absolute conclusions. Our findings indicate that, under the conditions of our test, we do not have sufficient evidence to claim a significant difference in accuracy between predictions for games on the blue side and the red side.*
 
