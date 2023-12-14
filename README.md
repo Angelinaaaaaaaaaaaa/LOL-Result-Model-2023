@@ -112,7 +112,10 @@ Nominal Features:
 `firstmidtower`
 `firsttothreetowers`
 
-The logistic regression model was tuned using a grid search with the parameter max_iter, and the best-performing model was obtained with max_iter=400.
+#### Feature Transformation and Hyperparameter Tuning
+
+In this analysis, we employed a combination of feature transformation and hyperparameter tuning to enhance the performance of a logistic regression model. The feature transformation was executed using a preprocessor, specifically a ColumnTransformer, which applied a One-Hot Encoding transformation to the 'side' feature while preserving other features through the 'passthrough' option. This transformation is encapsulated within a Pipeline, along with the logistic regression model. To optimize the logistic regression model's performance, a grid search was conducted over the hyperparameter space, focusing on the max_iter parameter. The grid search, performed with cross-validation, identified the best-performing model with a max_iter value of 400. This parameter choice is supported by a graph depicting the model's performance across different max_iter values. The resulting tuned logistic regression model is expected to exhibit improved predictive capabilities, making it well-suited for the task at hand, which is shown below.
+<iframe src="assets/bl_hyperpara_accuracy.html" width=800 height=600 frameBorder=0></iframe>
 
 ### Performance Evaluation
 The model achieved a high accuracy of approximately 85.97%. The confusion matrix shows good performance in distinguishing between true positives (1819) and true negatives (1840), with fewer false positives (357) and false negatives (293).
@@ -132,6 +135,11 @@ The model's capability to correctly classify outcomes, as reflected in the confu
 
 
 ## Final Model
+
+#### Feature Transformation
+
+#### 
+
 
 ## Fairness Analysis
 
