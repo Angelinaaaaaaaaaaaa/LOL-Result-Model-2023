@@ -165,4 +165,38 @@ The model's capability to correctly classify outcomes, as reflected in the confu
 
 ## Fairness Analysis
 
+### Group Selection:
+
+For this fairness analysis, we selected Group X as the predictions made for games on the blue side and Group Y as the predictions made for games on the red side.
+
+### Evaluation Metric:
+
+Our evaluation metric is the accuracy of the classifier in predicting game outcomes for both Group X and Group Y.
+
+### Hypotheses:
+
+- **Null Hypothesis (H0):**
+  The accuracy of the classifier is the same for both the blue side (Group X) and the red side (Group Y), and any observed differences are due to random chance.
+
+- **Alternative Hypothesis (H1):**
+  There is a significant difference in accuracy between the blue side (Group X) and the red side (Group Y).
+
+### Test Statistic:
+
+We utilized the absolute difference in accuracy between Group X and Group Y as our test statistic.
+
+### Significance Level:
+
+A significance level of 0.01 was chosen to determine the threshold for statistical significance.
+
+### Permutation Test Results:
+
+Upon conducting the permutation test, we obtained a p-value of 0.2644. This p-value represents the probability of observing a difference in accuracy as extreme as the one observed, assuming the null hypothesis is true.
+<iframe src="assets/Side_Accuracy_Difference.html" width=800 height=600 frameBorder=0></iframe>
+
+### Conclusion:
+
+Given our chosen significance level of 0.01, the obtained p-value of 0.2644 exceeds the threshold. Therefore, we fail to reject the null hypothesis. This suggests that any observed variations in accuracy between the blue side and the red side may be attributed to random chance.
+
+*Note: In the context of statistical tests, we do not make absolute conclusions. Our findings indicate that, under the conditions of our test, we do not have sufficient evidence to claim a significant difference in accuracy between predictions for games on the blue side and the red side.*
 
