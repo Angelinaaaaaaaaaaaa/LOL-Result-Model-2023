@@ -87,7 +87,6 @@ As depicted in the DataFrame above, our initial focus was on columns with an r-s
 
 <iframe src="assets/xpdiffat10_residual.html" width=800 height=600 frameBorder=0></iframe>
 
-<iframe src="assets/natural_resource_residual.html" width=800 height=600 frameBorder=0></iframe>
 
 
 By plotting the residuals, we aimed to uncover any systematic deviations or patterns in our predictions. This step provides valuable insights into the limitations of our model and guides potential refinements to enhance its accuracy and reliability.
