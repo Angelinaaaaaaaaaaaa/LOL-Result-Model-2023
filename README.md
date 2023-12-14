@@ -110,6 +110,15 @@ Quantitative Features:
 Nominal Features:
 `side` (One-Hot Encoded)
 
+
+In our baseline model, we selected specific features, including dpm, xpdiffat10, and xpdiffat15, for their potential influence on predicting the outcome of League of Legends games. These features were chosen based on their significance in reflecting key aspects of team performance during different phases of the game. dpm (damage per minute) provides insights into a team's offensive capabilities, while xpdiffat10 and xpdiffat15 represent the experience point differentials at 10 and 15 minutes, respectively, capturing the team's strategic advantage or disadvantage during crucial early and mid-game stages.
+
+The rationale behind including these features lies in their ability to encapsulate critical moments and trends that significantly impact the overall game result. By focusing on the 10 and 15-minute time frames, we aim to capture the pivotal early and mid-game dynamics that often shape the trajectory of a match. These time points are strategically chosen to estimate the final result, allowing our model to account for key developments and performance differentials during critical phases of the game.
+
+The decision to drop certain columns, such as golddiffat10 and golddiffat15, was guided by a comprehensive analysis of their linear correlations and root mean squared error (rmse) values. The scatter plot matrix and residual plots provided valuable insights into the predictive performance and potential issues, leading us to refine our model by retaining only the most informative features. This iterative process ensures that our logistic regression model is not only accurate but also effectively captures the nuances of League of Legends gameplay that contribute to the final outcome.
+
+
+
 #### Feature Transformation and Hyperparameter Tuning
 
 In this analysis, we employed a combination of feature transformation and hyperparameter tuning to enhance the performance of a logistic regression model. The feature transformation was executed using a preprocessor, specifically a ColumnTransformer, which applied a One-Hot Encoding transformation to the 'side' feature while preserving other features through the 'passthrough' option. This transformation is encapsulated within a Pipeline, along with the logistic regression model. To optimize the logistic regression model's performance, a grid search was conducted over the hyperparameter space, focusing on the max_iter parameter. The grid search, performed with cross-validation, identified the best-performing model with a max_iter value of 54. This parameter choice is supported by a graph depicting the model's performance across different max_iter values. The resulting tuned logistic regression model is expected to exhibit improved predictive capabilities, making it well-suited for the task at hand, which is shown below.
