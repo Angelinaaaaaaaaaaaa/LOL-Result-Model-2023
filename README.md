@@ -67,20 +67,17 @@ To further understand the relationships between features, we conducted explorato
 
 #### Observations:
 
-1. Linear Correlations: There appears to be linear correlation between `golddiffat10`, `golddiffat15`, `xpdiffat10`, `xpdiffat15`, and `turretplates_diff`. To address potential multicollinearity, we plan to perform consider dropping certain columns in the next steps.
+1. Linear Correlations: There appears to be linear correlation between `golddiffat10`, `golddiffat15`, `xpdiffat10`, and `xpdiffat15`. To address potential multicollinearity, we plan to perform consider dropping certain columns in the next steps.
 2. Distinguishable Cutoff: If a column (a) has a strong correlation (𝑟²=0.4) with all the other columns, column (a) might be represented as a linear combination of the rest of the columns. Therefore, we dropped such columns to reduce variance ($variance\propto d/n$, where d is number of columns and n is number of data points, or rows)
    
    This is the head of our result dataframe showing columns correlation with each other:
 
-| target            |   r_squared | features                                                                                     |     rmse |
-|:------------------|------------:|:---------------------------------------------------------------------------------------------|---------:|
-| golddiffat10      |    0.617526 | ['golddiffat15', 'xpdiffat10', 'xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource'] | 0.629095 |
-| golddiffat15      |    0.680532 | ['xpdiffat10', 'xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource']                 | 0.600347 |
-| xpdiffat10        |    0.414847 | ['xpdiffat15', 'turretplates_diff', 'dpm', 'natural_resource']                               | 0.840565 |
-| xpdiffat15        |    0.310988 | ['turretplates_diff', 'dpm', 'natural_resource']                                             | 0.943209 |
-| turretplates_diff |    0.332043 | ['xpdiffat15', 'dpm', 'natural_resource']                                                    | 0.92644  |
-| dpm               |    0.122643 | ['xpdiffat15', 'turretplates_diff', 'natural_resource']                                      | 1.15932  |
-| natural_resource  |    0.324374 | ['xpdiffat15', 'turretplates_diff', 'dpm']                                                   | 0.932176 |
+| target       |   r_squared | features                                     |     rmse |
+|:-------------|------------:|:---------------------------------------------|---------:|
+| golddiffat10 |    0.613964 | ['golddiffat15', 'xpdiffat10', 'xpdiffat15'] | 0.655504 |
+| golddiffat15 |    0.54112  | ['xpdiffat10', 'xpdiffat15']                 | 0.726957 |
+| xpdiffat10   |    0.328865 | ['xpdiffat15']                               | 0.934638 |
+| xpdiffat15   |    0.328865 | ['xpdiffat10']                               | 0.925451 |
  
 As depicted in the DataFrame above, our initial focus was on columns with an r-squared value greater than 0.4. Despite the promising nature of these features, the presence of a relatively high root mean squared error (rmse) prompted us to delve deeper into the analysis. To gain a clearer understanding of the predictive performance and potential issues, we proceeded to visualize the residuals, which allows us to scrutinize the disparities between the predicted values and the actual observations. This examination becomes particularly crucial when facing higher rmse values, as it helps identify patterns or trends that may not be evident through standard metrics alone.
 
@@ -97,7 +94,7 @@ By plotting the residuals, we aimed to uncover any systematic deviations or patt
 
 
 
-With the promising result of residual plot, we dropped `golddiffat10`, `golddiffat15`, `xpdiffat10`.
+With the promising result of residual plot, we dropped `golddiffat10`, `golddiffat15`.
 
 
 
@@ -107,40 +104,28 @@ In our baseline model, we employed a logistic regression model using a preproces
 
 Quantitative Features:
 `dpm`
+`xpdiffat10`
 `xpdiffat15`
-`turretplates_diff`
-`natural_resource`
 
 
 Nominal Features:
 `side` (One-Hot Encoded)
-`doublekills`
-`triplekills`
-`quadrakills`
-`pentakills`
-`firstblood`
-`firstdragon`
-`elders`
-`firstherald`
-`firstbaron`
-`firsttower`
-`firstmidtower`
-`firsttothreetowers`
 
 #### Feature Transformation and Hyperparameter Tuning
 
-In this analysis, we employed a combination of feature transformation and hyperparameter tuning to enhance the performance of a logistic regression model. The feature transformation was executed using a preprocessor, specifically a ColumnTransformer, which applied a One-Hot Encoding transformation to the 'side' feature while preserving other features through the 'passthrough' option. This transformation is encapsulated within a Pipeline, along with the logistic regression model. To optimize the logistic regression model's performance, a grid search was conducted over the hyperparameter space, focusing on the max_iter parameter. The grid search, performed with cross-validation, identified the best-performing model with a max_iter value of 800. This parameter choice is supported by a graph depicting the model's performance across different max_iter values. The resulting tuned logistic regression model is expected to exhibit improved predictive capabilities, making it well-suited for the task at hand, which is shown below.
+In this analysis, we employed a combination of feature transformation and hyperparameter tuning to enhance the performance of a logistic regression model. The feature transformation was executed using a preprocessor, specifically a ColumnTransformer, which applied a One-Hot Encoding transformation to the 'side' feature while preserving other features through the 'passthrough' option. This transformation is encapsulated within a Pipeline, along with the logistic regression model. To optimize the logistic regression model's performance, a grid search was conducted over the hyperparameter space, focusing on the max_iter parameter. The grid search, performed with cross-validation, identified the best-performing model with a max_iter value of 54. This parameter choice is supported by a graph depicting the model's performance across different max_iter values. The resulting tuned logistic regression model is expected to exhibit improved predictive capabilities, making it well-suited for the task at hand, which is shown below.
 <iframe src="assets/bl_hyperpara_accuracy.html" width=800 height=600 frameBorder=0></iframe>
 
 ### Performance Evaluation
-The model achieved a high accuracy of approximately 85.97%. The confusion matrix shows good performance in distinguishing between true positives (1819) and true negatives (1840), with fewer false positives (357) and false negatives (293).
-Accuracy: 85.92%
-Precision: 83.75%
-Recall: 86.26%
+The model achieved a high accuracy of approximately 75.19%. The confusion matrix shows good performance in distinguishing between true positives (1623) and true negatives (1617), with fewer false positives (552) and false negatives (517).
+Accuracy: 75.19%
+Precision: 74.55%
+Recall: 75.77%
 
 Confusion matrix:
+![image](https://github.com/Angelinaaaaaaaaaaaa/LOL-Result-Model-2023/assets/115201846/924ea8b0-6ff2-4e6d-8d37-42769bb0b030)
 
-![image](https://github.com/Angelinaaaaaaaaaaaa/LOL-Result-Model-2023/assets/115201846/19bf1ae5-3bcf-4b84-9b0c-8d580e55d92a)
+
 
 ### Model Assessment
 The baseline logistic regression model demonstrates strong predictive performance, as evidenced by its high accuracy and balanced precision and recall scores. The inclusion of key features, both quantitative and nominal, along with appropriate encodings, has contributed to the model's effectiveness.
