@@ -138,11 +138,12 @@ The model's capability to correctly classify outcomes, as reflected in the confu
 
 #### Feature Transformation
 #### New Features
-We enhanced our baseline model by incorporating additional features, including 'doublekills', 'triplekills', 'quadrakills', 'pentakills', 'firstblood', 'firstdragon', 'elders', 'firstherald', 'firstbaron', 'firsttower', 'firstmidtower', 'firsttothreetowers', 'dpm', 'turretplates_diff', and 'natural_resource'. This augmentation aims to refine the final model.
+We enhanced our baseline model by incorporating additional features, including `doublekills`, `triplekills`, `quadrakills`, `pentakills`, `firstblood`, `firstdragon`, `elders`, `firstherald`, `firstbaron`, `firsttower`, `firstmidtower`, `firsttothreetowers`, `dpm`, `turretplates_diff`, and `natural_resource`. This augmentation aims to refine the final model.
 
-The selection of features such as 'turretplates_diff’, 'firstblood', 'firstdragon', and 'firstherald' is based on their ability to reflect a team's early-game performance, contributing to the acquisition of initial advantages. Additionally, features related to 'firstbaron', ‘elder’, 'doublekills', 'triplekills', 'quadrakills', and 'pentakills' were incorporated, as they consistently mark pivotal moments in the game, signifying significant shifts in momentum. 
+The selection of features such as `turretplates_diff`, `firstblood`, `firstdragon`, and `firstherald` is based on their ability to reflect a team's early-game performance, contributing to the acquisition of initial advantages. Additionally, features related to `firstbaron`, `elder`, `doublekills`, `triplekills`, `quadrakills`, and `pentakills` were incorporated, as they consistently mark pivotal moments in the game, signifying significant shifts in momentum.
 
-Furthermore, the inclusion of 'firsttower', 'firstmidtower', and 'firsttothreetowers' serves a dual purpose by not only reflecting a team's mid-game performance but also shedding light on the vision disparities between the two teams. On another note, 'dpm', 'turretplates_diff', and 'natural_resource' offer insights from a different perspective, providing indications of a team's consistency in performance throughout the game.
+Furthermore, the inclusion of `firsttower`, `firstmidtower`, and `firsttothreetowers` serves a dual purpose by not only reflecting a team's mid-game performance but also shedding light on the vision disparities between the two teams. On another note, `dpm`, `turretplates_diff`, and `natural_resource` offer insights from a different perspective, providing indications of a team's consistency in performance throughout the game.
+
 
 #### Hyperparameters:
 
