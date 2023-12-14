@@ -154,7 +154,8 @@ The model's capability to correctly classify outcomes, as reflected in the confu
 #### Feature Transformation
 
 
- 
+ ![image](https://github.com/Angelinaaaaaaaaaaaa/LOL-Result-Model-2023/assets/115201846/33c0a9f8-bb60-49a5-95b9-5fbd1eec96f5)
+
 
 
 ## Fairness Analysis
