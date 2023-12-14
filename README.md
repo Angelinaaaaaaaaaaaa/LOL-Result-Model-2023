@@ -52,14 +52,14 @@ This is the first five lines of our initial dataframe:
 | Blue   |             2 |             2 |             0 |            0 |            0 |             0 |        0 |             0 |            0 |            0 |               1 |                    0 | 1968.55 |          -1001 |          -1901 |        -1748 |         -763 |        1 |                  -3 |                  1 |
 
 By employing these evaluation metrics—accuracy, precision, and recall—using confustion matrix we aim to comprehensively assess the effectiveness of our Random Forest model in predicting League of Legends game outcomes.
-In the pursuit of accuracy, we opt for the Accuracy metric as the most suitable measure for our balanced dataset. With an equal distribution of wins and losses, and an equitable treatment of False Positives (FP) and False Negatives (FN), Accuracy emerges as the preferred metric over F-1 score, precision, and recall.
+In the pursuit of accuracy, we opt for the Accuracy metric as the most suitable measure for our balanced dataset. With an equal distribution of wins and losses, and an equitable treatment of False Positives (FP) and False Negatives (FN), accuracy emerges as the preferred metric over F-1 score, precision, and recall.
 
 
 ## Baseline Model
 
 ### Exploratory Data Analysis (EDA)
 
-In our exploratory data analysis, we noticed missing data correlated with the 'league' variable. To address this, we utilized probabilistic imputation, leveraging data from other leagues to fill in missing values, ensuring a more comprehensive dataset.
+In our exploratory data analysis, we noticed missing data correlated with the `league` variable. To address this, we utilized probabilistic imputation, leveraging data from other leagues to fill in missing values, ensuring a more comprehensive dataset.
 
 To further understand the relationships between features, we conducted exploratory data analysis by drawing a scatter plot matrix. The color-coding is based on the game result ('Win' or 'Lose').
 
@@ -67,7 +67,7 @@ To further understand the relationships between features, we conducted explorato
 
 #### Observations:
 
-1. Linear Correlations: There appears to be linear correlation between 'golddiffat10', 'golddiffat15', 'xpdiffat10', 'xpdiffat15', and 'turretplates_diff'. To address potential multicollinearity, we plan to perform consider dropping certain columns in the next steps.
+1. Linear Correlations: There appears to be linear correlation between `golddiffat10`, `golddiffat15`, `xpdiffat10`, `xpdiffat15`, and `turretplates_diff`. To address potential multicollinearity, we plan to perform consider dropping certain columns in the next steps.
 2. Distinguishable Cutoff: If a column (a) has a strong correlation (𝑟²=0.4) with all the other columns, column (a) might be represented as a linear combination of the rest of the columns. Therefore, we dropped such columns to reduce variance ($variance\proptod/n$, where d is number of columns and n is number of data points, or rows)
    
    This is the head of our result dataframe showing columns correlation with each other:
@@ -87,7 +87,7 @@ Using the 0.4 cutoff of r_squared, we dropped `golddiffat10`, `golddiffat15`, `x
 
 
 ### Baseline Model Description
-In our baseline model, we employed a logistic regression model using a preprocessor with One-Hot Encoding for the 'side' variable. The features in the model include both quantitative and nominal variables:
+In our baseline model, we employed a logistic regression model using a preprocessor with One-Hot Encoding for the `side` variable. The features in the model include both quantitative and nominal variables:
 
 
 Quantitative Features:
